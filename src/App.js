@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
-import Calculator from './components/Calculator.js';
 import {Provider} from 'react-redux';
+
+import Calculator from './components/Calculator.js';
+
+import './styles/main.scss'
 
 import store from './store.js';
 
