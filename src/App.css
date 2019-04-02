@@ -1,0 +1,97 @@
+*{
+  box-sizing: border-box;
+}
+
+.App {
+  text-align: center;
+  display:flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.Calculator{
+  margin-right: auto;
+  margin-left: auto;
+  width:400px;
+  margin-top: 200px;
+}
+
+.input{
+  width:400px;
+  height:100px;
+  border: 1px solid grey;
+  display:flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  font-size: 40px;
+}
+
+.ActionButton, .NumberButton{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border:1px  solid grey;
+  font-size:50px;
+  width:100%;
+  outline: 1px;
+}
+
+.ActionButton:hover, .NumberButton:hover{
+  cursor: pointer;
+}
+
+.ActionButton{
+  background-color: #d8e70c
+}
+
+.NumberButton{
+  background-color: #eff5f2
+}
+
+.NumberButton
+.Calculator{
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.mainPart{
+  display: flex;
+  flex-direction: column;
+}
+
+.row40{
+  display: flex;
+  height: 40%;
+}
+
+.row20{
+  display: flex;
+ height:20%;
+
+}
+
+.col75{
+  display: flex;
+  flex-wrap: wrap;
+  width:75%;
+}
+
+.col50{
+  display: flex;
+  width:50%;
+
+}
+
+.col33{
+  display: flex;
+  width:33.33333333%;
+
+}
+
+.col25{
+  display: flex;
+  width:25%;
+
+}
+
