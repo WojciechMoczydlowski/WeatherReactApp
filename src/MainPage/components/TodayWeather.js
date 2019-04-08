@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import './styles/main.scss'
+import '../../styles/main.scss';
 
-class MainWeather extends Component {
+class TodayWeather extends Component {
   render() {
     return (
-      <div className="search-panel">
+      <div className="today-weather">
        MainWeather
       </div>
     );
@@ -13,4 +13,4 @@ class MainWeather extends Component {
 }
 
 
-export default MainWeather;
+export default TodayWeather;

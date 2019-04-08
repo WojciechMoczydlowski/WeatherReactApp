@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import './styles/main.scss'
+import '../../styles/main.scss';
 
-class LongTermWeather extends Component {
+class SearchPanel extends Component {
   render() {
     return (
       <div className="search-panel">
-       LongTermWeather
+        SearchPanel
       </div>
     );
   }
 }
 
 
-export default LongTermWeather;
+export default SearchPanel;
