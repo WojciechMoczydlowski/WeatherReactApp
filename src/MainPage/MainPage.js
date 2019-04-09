@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+
+import {setTodayWeather} from '../actions/weatherActions';
+
 import '../styles/main.scss';
 
 import {getTodayWeather} from './services/weatherService'
-import MainWeather from './components/TodayWeather';
+import TodayWeather from './components/TodayWeather';
 import OtherTownsWeather from './components/OtherTownsWeather';
 import SearchPanel from './components/SearchPanel';
 import SubWeather from './components/SubWeather';
@@ -12,14 +15,14 @@ import LongTermWeather from './components/LongTermWeather';
 class MainPage extends Component {
 
   componentDidMount(){
-    const weather = getTodayWeather();
-    console.log(weather);
+    fetchTodayWeather();
+    console.log(this.props.todayWeather);
   }
 
   render() {
     return (
-      <div className="search-panel">
-        <MainWeather/>
+      <div className="main-page" onClick = {() => fetchTodayWeather()}>
+        <TodayWeather/>
         <OtherTownsWeather/>
         <SearchPanel/>
         <SubWeather/>
@@ -29,5 +32,14 @@ class MainPage extends Component {
   }
 }
 
+async function fetchTodayWeather() {
+  const weather = await getTodayWeather();
+  console.log(weather);
+  setTodayWeather(weather);
+}
 
-export default MainPage;
+const mapStateToProps = state =>({
+ todayWeather: state.weather.todayWeather,
+});
+
+export default connect(mapStateToProps,{setTodayWeather})(MainPage);;

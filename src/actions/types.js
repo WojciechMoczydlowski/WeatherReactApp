@@ -1,3 +1,1 @@
-export const ADD_SYMBOL = 'ADD_SYMBOL';
-export const COMPUTE = 'COMPUTE';
-export const CLEAN_INPUT =  'CLEAN_INPUT';
+export const SET_TODAY_WEATHER = 'SET_TODAY_WEATHER';

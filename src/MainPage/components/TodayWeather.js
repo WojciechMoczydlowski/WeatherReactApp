@@ -3,6 +3,10 @@ import {connect} from 'react-redux';
 import '../../styles/main.scss';
 
 class TodayWeather extends Component {
+
+  componentDidMount(){
+  }
+
   render() {
     return (
       <div className="today-weather">
@@ -11,6 +15,8 @@ class TodayWeather extends Component {
     );
   }
 }
-
+// const mapStateToProps = state =>({
+//  // toDayWeather: state.we
+// });
 
 export default TodayWeather;

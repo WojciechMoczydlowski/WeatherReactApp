@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import calculatorReducer from './calculatorReducer';
+import weatherReducer from './weatherReducer';
 
 export default combineReducers({
-    calculator : calculatorReducer
+    weather : weatherReducer
 });
