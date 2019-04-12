@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '@babel/polyfill';
 import {Provider} from 'react-redux';
 import store from './store.js';
 

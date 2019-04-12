@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import {setTodayWeather} from '../actions/weatherActions';
+import {fetchTodayWeather} from '../actions/todayWeatherActions';
 
 import '../styles/main.scss';
 
-import {getTodayWeather} from './services/weatherService'
 import TodayWeather from './components/TodayWeather';
 import OtherTownsWeather from './components/OtherTownsWeather';
 import SearchPanel from './components/SearchPanel';
@@ -15,13 +14,16 @@ import LongTermWeather from './components/LongTermWeather';
 class MainPage extends Component {
 
   componentDidMount(){
-    fetchTodayWeather();
-    console.log(this.props.todayWeather);
+    //fetchTodayWeather();
+    this.props.dispatch(fetchTodayWeather());
   }
 
+ 
+
   render() {
+    
     return (
-      <div className="main-page" onClick = {() => fetchTodayWeather()}>
+      <div className="main-page">
         <TodayWeather/>
         <OtherTownsWeather/>
         <SearchPanel/>
@@ -31,15 +33,22 @@ class MainPage extends Component {
     );
   }
 }
+  //  function fetchTodayWeather() {
+  //  return function(dispatch){
 
-async function fetchTodayWeather() {
-  const weather = await getTodayWeather();
-  console.log(weather);
-  setTodayWeather(weather);
-}
+  //   dispatch(todayWeatherRequest());
+  //   //const weather = await getTodayWeather();
+  //   const weather = {};
+  //  // dispatch(todayWeatherSuccess(weather));
+  //   console.log(weather);
+
+  //  }
+
+// }
+
 
 const mapStateToProps = state =>({
- todayWeather: state.weather.todayWeather,
+ todayWeather: state.todayWeather.todayWeather,
 });
 
-export default connect(mapStateToProps,{setTodayWeather})(MainPage);;
+export default connect(mapStateToProps,null)(MainPage);
