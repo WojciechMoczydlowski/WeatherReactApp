@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import '../../styles/main.scss';
 
-class SearchPanel extends Component {
+class Loading extends Component {
   render() {
     return (
-      <div className="search-panel">
-        SearchPanel
+      <div className="loading">
+       Loading
       </div>
     );
   }
 }
 
 
-export default SearchPanel;
+export default Loading;

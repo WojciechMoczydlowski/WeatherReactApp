@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import '../../styles/main.scss';
 
-class SubWeather extends Component {
+class NextDayWeather extends Component {
   render() {
     return (
       <div className="sub-weather">
@@ -13,4 +12,4 @@ class SubWeather extends Component {
 }
 
 
-export default SubWeather;
+export default NextDayWeather;

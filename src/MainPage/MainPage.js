@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import {fetchTodayWeather} from '../actions/todayWeatherActions';
-
 import '../styles/main.scss';
+
+import {fetchTodayWeather} from '../actions/todayWeatherActions';
 
 import TodayWeather from './components/TodayWeather';
 import OtherTownsWeather from './components/OtherTownsWeather';
 import SearchPanel from './components/SearchPanel';
-import SubWeather from './components/SubWeather';
+import NextDayWeather from './components/NextDayWeather';
 import LongTermWeather from './components/LongTermWeather';
+import Loading from './components/Loading';
 
 class MainPage extends Component {
 
@@ -17,17 +18,15 @@ class MainPage extends Component {
     //fetchTodayWeather();
     this.props.dispatch(fetchTodayWeather());
   }
-
- 
-
   render() {
-    
+    const { todayWeather , loadingTodayWeather} = this.props;
     return (
       <div className="main-page">
-        <TodayWeather/>
-        <OtherTownsWeather/>
+        { loadingTodayWeather ? (<Loading/>) :( <TodayWeather todayWeather = {todayWeather}/> )} 
+        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather tomorrow = {todayWeather}/>)} 
+        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather todayWeather = {todayWeather}/>)} 
+        <OtherTownsWeather />
         <SearchPanel/>
-        <SubWeather/>
         <LongTermWeather/>
       </div>
     );
@@ -48,7 +47,9 @@ class MainPage extends Component {
 
 
 const mapStateToProps = state =>({
- todayWeather: state.todayWeather.todayWeather,
+  todayWeather: state.todayWeather.weather,
+  loadingTodayWeather: state.todayWeather.loading,
+  errorTodayWeather: state.todayWeather.error,
 });
 
 export default connect(mapStateToProps,null)(MainPage);

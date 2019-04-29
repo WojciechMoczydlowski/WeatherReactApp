@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
 import '../../styles/main.scss';
 
 class TodayWeather extends Component {
 
-  componentDidMount(){
-  }
-
   render() {
-    return (
+    const weather = this.props.todayWeather;
+    console.log(weather);
+    return(
       <div className="today-weather">
-       MainWeather
+        {/* {this.props.todayWeather} */}
       </div>
     );
   }
 }
-// const mapStateToProps = state =>({
-//  // toDayWeather: state.we
-// });
+
 
 export default TodayWeather;
