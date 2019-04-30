@@ -1,12 +1,13 @@
 import {
   LONGTIME_WEATHER_REQUEST,
   LONGTIME_WEATHER_SUCCESS,
-  LONGTIME_WEATHER_FAILURE
+  LONGTIME_WEATHER_FAILURE,
+  DISPLAY_LONGTIME_WEATHER,
 } from "./types";
 
 import { getLongTimeWeather } from "../MainPage/services/weatherService";
 
-//TodayWeather
+//LongTimeWeatherRequest
 
 const longTimeWeatherRequest = () => ({
   type: LONGTIME_WEATHER_REQUEST
@@ -27,3 +28,8 @@ export const fetchLongTimeWeather = () => dispatch => {
     .then(response => dispatch(longTimeWeatherSuccess(response)))
     .catch(error => dispatch(longTimeWeatherFailure(error)));
 };
+
+
+export const displayLongTimeWeather = () =>({
+  type:DISPLAY_LONGTIME_WEATHER,
+});
