@@ -26,8 +26,8 @@ class MainPage extends Component {
     return (
       <div className="main-page">
         { loadingTodayWeather ? (<Loading/>) :( <TodayWeather todayWeather = {todayWeather}/> )} 
-        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather tomorrow = {todayWeather}/>)} 
-        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather todayWeather = {todayWeather}/>)} 
+        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather weather = {todayWeather}/>)} 
+        { loadingTodayWeather ? (<Loading/>) :( <NextDayWeather weather = {todayWeather}/>)} 
         <OtherTownsWeather/>
         <SearchPanel/>
         { displayLongTimeWeather ? (<LongTermWeather/>) : <div/>}

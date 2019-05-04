@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/main.scss';
 
+
 class TodayWeather extends Component {
 
   render() {
@@ -8,6 +9,7 @@ class TodayWeather extends Component {
     console.log(weather);
     return(
       <div className="today-weather">
+        todayWeather
         {/* {this.props.todayWeather} */}
       </div>
     );

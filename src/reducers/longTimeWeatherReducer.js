@@ -13,7 +13,6 @@ const longTimeWeather = {
 };
 
 const longTimeWeatherReducer = (state = longTimeWeather, action) => {
-  console.log(action.type);
   switch (action.type) {
     case LONGTIME_WEATHER_REQUEST:
       return {
