@@ -1,51 +1,39 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import backgroundImg from "./img/sky.jpg";
-
-import { fetchTodayWeather } from "../actions/todayWeatherActions";
-import {
-  fetchLongTimeWeather,
-  displayLongTimeWeather
-} from "../actions/longTimeWeatherActions";
+import { fetchTodayWeather } from "../../../../redux/actions/todayWeatherActions";
 
 import TodayWeather from "./components/TodayWeather";
-import OtherTownsWeather from "./components/OtherTownsWeather";
-import SearchPanel from "./components/SearchPanel";
 import NextDayWeather from "./components/NextDayWeather";
 import LongTermWeather from "./components/LongTermWeather";
 import Loading from "./components/Loading";
 
-import AppBar from "@material-ui/core/AppBar";
-
-class MainPage extends Component {
+class WeatherListing extends Component {
   componentDidMount() {
-    //fetchTodayWeather();
-    this.props.dispatch(fetchTodayWeather());
+    this.props.dispatch(fetchTodayWeather("warsaw"));
   }
   render() {
     const { todayWeather, loadingTodayWeather } = this.props;
+    console.log(todayWeather);
     const {
       longTimeWeather,
       loadingLongTimeWeather,
       errorLongTimeWeather,
       displayLongTimeWeather
     } = this.props;
-    console.log(longTimeWeather);
     return (
-      <div className="main-page">
-        <SearchPanel />
+      <div>
         {loadingTodayWeather ? (
           <Loading />
         ) : (
-          <TodayWeather todayWeather={todayWeather} />
+          <TodayWeather weather={todayWeather} />
         )}
         {loadingTodayWeather ? (
           <Loading />
         ) : (
-          <NextDayWeather weather={todayWeather} />
+          <NextDayWeather weather={longTimeWeather} />
         )}
-        {loadingTodayWeather ? (
+        {loadingLongTimeWeather ? (
           <Loading />
         ) : (
           <NextDayWeather weather={todayWeather} />
@@ -72,4 +60,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null
-)(MainPage);
+)(WeatherListing);

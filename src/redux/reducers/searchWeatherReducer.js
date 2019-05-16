@@ -5,7 +5,6 @@ import {
   const cityName = '';
   
   const searchWeatherReducer = (state = cityName, action) => {
-     console.log(action.payload);
     switch (action.type) {
       case WEATHER_INPUT_CHANGE:
         return {

@@ -3,8 +3,9 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { weatherInputChange } from "../../actions/searchWeatherActions";
-import { searchWeatherReducer } from "../../reducers/searchWeatherReducer";
+import { weatherInputChange } from "../../../redux/actions/searchWeatherActions";
+import { fetchLongTimeWeather } from "../../../redux/actions/longTimeWeatherActions";
+import { fetchTodayWeather } from "../../../redux/actions/todayWeatherActions";
 
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -19,9 +20,14 @@ class SearchPanel extends Component {
   handleInput = event => {
     this.props.weatherInputChange(event.target.value);
   };
+  handleSubmitButton = () => {
+    this.props.fetchTodayWeather(this.props.cityName);
+    this.props.fetchLongTimeWeather(this.props.cityName);
+    this.props.weatherInputChange('');
+  };
 
   render() {
-    const { classes } = this.props;
+    const { classes, cityName } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -40,7 +46,8 @@ class SearchPanel extends Component {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search city"
+                placeholder="City..."
+                onChange={this.handleInput}
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
@@ -50,6 +57,7 @@ class SearchPanel extends Component {
             <Button
               variant="contained"
               color="primary"
+              onClick={() => this.handleSubmitButton()}
               className={classes.button}
             >
               Search
@@ -114,12 +122,29 @@ const styles = theme => ({
         width: 200
       }
     }
+  },
+  button: {
+    margin: theme.spacing.unit
   }
 });
 
 const mapStateToProps = state => ({
   cityName: state.searchWeather.cityName
 });
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTodayWeather: cityName => {
+      dispatch(fetchTodayWeather(cityName));
+    },
+    fetchLongTimeWeather: cityName => {
+      dispatch(fetchLongTimeWeather(cityName));
+    },
+    weatherInputChange: cityName => {
+      dispatch(weatherInputChange(cityName));
+    }
+  };
+};
 
 SearchPanel.propTypes = {
   classes: PropTypes.object.isRequired
@@ -128,7 +153,7 @@ SearchPanel.propTypes = {
 export default compose(
   connect(
     mapStateToProps,
-    { weatherInputChange }
+    mapDispatchToProps
   ),
   withStyles(styles)
 )(SearchPanel);

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import 'typeface-roboto';
 import '@babel/polyfill';
 import {Provider} from 'react-redux';
-import store from './store.js';
+import store from './redux/store';
 
 import './styles/main.scss'
 
-import MainPage from './MainPage/MainPage'
+import MainPage from './scenes/MainPage/MainPage'
 
 class App extends Component {
   render() {

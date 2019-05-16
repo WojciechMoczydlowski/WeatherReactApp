@@ -5,7 +5,7 @@ import {
   DISPLAY_LONGTIME_WEATHER,
 } from "./types";
 
-import { getLongTimeWeather } from "../MainPage/services/weatherService";
+import { getLongTimeWeather } from "../../scenes/MainPage/services/weatherService";
 
 //LongTimeWeatherRequest
 

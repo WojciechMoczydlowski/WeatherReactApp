@@ -4,7 +4,7 @@ import {
   TODAY_WEATHER_FAILURE
 } from "./types";
 
-import { getTodayWeather } from "../MainPage/services/weatherService";
+import { getTodayWeather } from "../../scenes/MainPage/services/weatherService";
 
 //TodayWeather
 
@@ -21,9 +21,9 @@ const todayWeatherFailure = payload => ({
   payload
 });
 
-export const fetchTodayWeather = () => dispatch => {
+export const fetchTodayWeather = (cityName) => dispatch => {
   dispatch(todayWeatherRequest());
-  return getTodayWeather()
+  return getTodayWeather(cityName)
     .then(response => dispatch(todayWeatherSuccess(response)))
     .catch(error => dispatch(todayWeatherFailure(error)));
 };
