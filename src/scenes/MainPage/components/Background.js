@@ -10,7 +10,7 @@ const styles = theme => ({
   root: {      
     backgroundImage: `url(${backgroundImg})`,
     width:'100%',
-    minHeight: '800px',
+    height: '100%',
     backgroundRepeat  : 'no-repeat',
     backgroundPosition: 'center',
     overflow: "hidden",

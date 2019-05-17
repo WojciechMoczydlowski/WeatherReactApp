@@ -1,6 +1,7 @@
 import React from "react";
 
 import SearchPanel from "./components/SearchPanel";
+import Footer from "./components/Footer";
 import Background from "./components/Background";
 import WeatherListing from "./scenes/WeatherListing/WeatherListing";
 
@@ -10,6 +11,7 @@ const MainPage = props => {
       <SearchPanel />
       <Background/>
       <WeatherListing />
+      {/* <Footer/> */}
     </div>
   );
 };

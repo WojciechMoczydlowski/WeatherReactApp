@@ -4,6 +4,7 @@ import { compose } from "redux";
 import { withStyles } from "@material-ui/core/styles";
 
 import { fetchTodayWeather } from "../../../../redux/actions/todayWeatherActions";
+import { fetchLongTimeWeather } from "../../../../redux/actions/longTimeWeatherActions";
 
 import TodayWeather from "./components/TodayWeather";
 import NextDayWeather from "./components/NextDayWeather";
@@ -13,17 +14,18 @@ import Loading from "./components/Loading";
 class WeatherListing extends Component {
   componentDidMount() {
     this.props.dispatch(fetchTodayWeather("warsaw"));
+    this.props.dispatch(fetchLongTimeWeather("warsaw"));
   }
   render() {
     const { todayWeather, loadingTodayWeather } = this.props;
     const {classes} = this.props;
-    console.log(todayWeather);
     const {
       longTimeWeather,
       loadingLongTimeWeather,
       errorLongTimeWeather,
       displayLongTimeWeather
     } = this.props;
+    
     return (
       <div className = {classes.root}>
         {loadingTodayWeather ? (
@@ -31,15 +33,15 @@ class WeatherListing extends Component {
         ) : (
           <TodayWeather weather={todayWeather} />
         )}
-        {loadingTodayWeather ? (
+       {loadingLongTimeWeather ? (
           <Loading />
         ) : (
-          <NextDayWeather weather={longTimeWeather} />
+          <NextDayWeather weather={longTimeWeather} gridSpecifier ={classes.nextDayWeatherUp} />
         )}
-        {loadingLongTimeWeather ? (
+        {  loadingLongTimeWeather ? (
           <Loading />
         ) : (
-          <NextDayWeather weather={todayWeather} />
+          <NextDayWeather weather={longTimeWeather} gridSpecifier ={classes.nextDayWeatherDown} />
         )}
         {/* <OtherTownsWeather/> */}
 
@@ -51,7 +53,37 @@ class WeatherListing extends Component {
 
 const styles = theme => ({
     root: {
-      zIndex: "5"
+      width: '100%',
+      height: '650px',
+      display: 'grid',
+      gridTemplateColumns: '1fr 1fr',
+      gridTemplateRows: '1fr 1fr',
+      justifyContent: 'center',
+      alignItem: 'center',
+      [theme.breakpoints.down("sm")]: {
+        gridColumnStart: '2',
+        gridColumnEnd: '3',
+        gridRowStart: '1',
+        gridRowEnd: '2',
+      }
+    },
+    nextDayWeatherUp:{
+      gridColumnStart: '2',
+      gridColumnEnd: '3',
+      gridRowStart: '1',
+      gridRowEnd: '2',
+      [theme.breakpoints.down("sm")]: {
+        display:'none',
+      }
+    },
+    nextDayWeatherDown:{
+      gridColumnStart: '2',
+      gridColumnEnd: '3',
+      gridRowStart: '2',
+      gridRowEnd: '3',
+      [theme.breakpoints.down("sm")]: {
+        display:'none',
+      }
     }
   });
 
@@ -61,8 +93,8 @@ const mapStateToProps = state => ({
   errorTodayWeather: state.todayWeather.error,
 
   longTimeWeather: state.longTimeWeather.weather,
-  loadingLongTimeWeather: state.longTimeWeather.weather,
-  errorLongTimeWeather: state.longTimeWeather.weather,
+  loadingLongTimeWeather: state.longTimeWeather.loading,
+  errorLongTimeWeather: state.longTimeWeather.error,
   displayLongTimeWeather: state.longTimeWeather.display
 });
 

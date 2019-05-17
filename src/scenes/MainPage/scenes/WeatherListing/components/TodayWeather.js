@@ -2,46 +2,96 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
+import CardHeader from "@material-ui/core/CardHeader";
+import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
+import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-class TodayWeather extends Component {
-  render() {
-    const { classes, weather } = this.props;
-    console.log(weather);
-    return (
+import SearchIcon from "@material-ui/icons/Search";
+
+const TodayWeather = props => {
+  const { classes, weather } = props;
+  return (
+    <div className={classes.root}>
       <Card className={classes.card}>
-        <CardContent>
+        <CardHeader title="Warsaw" subheader="September 14, 2016" />
+        <div className={classes.flexWrapper}>
+          <CardContent>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              TodayWeather
+            </Typography>
+            <SearchIcon />
+          </CardContent>
+          <CardContent>
+          <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              TodayWeather
+            </Typography>
+            <SearchIcon />
+          </CardContent>
+          <CardContent>
+          <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              TodayWeather
+            </Typography>
+            <SearchIcon />
+          </CardContent>
+        </div>
+     
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
           >
-            Word of the Day
+            4C
           </Typography>
-          <Typography variant="h5" component="h2" />
-          <Typography className={classes.pos} color="textSecondary">
-            adjective
-          </Typography>
-          <Typography component="p">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Learn More</Button>
+          <CardMedia
+          className={classes.media}
+          title="Paella dish"
+        />
+         
+       
+        <CardActions className={classes.displayMoreDays}>
+          <Button size="small">More days</Button>
         </CardActions>
       </Card>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const styles = {
+const styles = theme => ({
+  root: {
+    display: "grid",
+    margin: "0",
+    width: "90%",
+    height: "95%",
+    justifySelf: "center",
+    alignSelf: "end",
+    gridColumnStart: "1",
+    gridColumnEnd: "2",
+    gridRowStart: "1",
+    gridRowEnd: "3",
+    [theme.breakpoints.down("sm")]: {
+      gridColumnStart: "1",
+      gridColumnEnd: "3",
+      gridRowStart: "1",
+      gridRowEnd: "3"
+    }
+  },
   card: {
-    minWidth: 275
+    position: 'relative',
   },
   bullet: {
     display: "inline-block",
@@ -53,8 +103,18 @@ const styles = {
   },
   pos: {
     marginBottom: 12
+  },
+  flexWrapper: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+
+  },
+  displayMoreDays:{
+    positon:'absolute',
+    bottom: '5px',
   }
-};
+});
 
 TodayWeather.propTypes = {
   classes: PropTypes.object.isRequired
