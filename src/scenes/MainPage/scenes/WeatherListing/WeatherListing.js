@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
+import { withStyles } from "@material-ui/core/styles";
 
 import { fetchTodayWeather } from "../../../../redux/actions/todayWeatherActions";
 
@@ -14,6 +16,7 @@ class WeatherListing extends Component {
   }
   render() {
     const { todayWeather, loadingTodayWeather } = this.props;
+    const {classes} = this.props;
     console.log(todayWeather);
     const {
       longTimeWeather,
@@ -22,7 +25,7 @@ class WeatherListing extends Component {
       displayLongTimeWeather
     } = this.props;
     return (
-      <div>
+      <div className = {classes.root}>
         {loadingTodayWeather ? (
           <Loading />
         ) : (
@@ -46,6 +49,12 @@ class WeatherListing extends Component {
   }
 }
 
+const styles = theme => ({
+    root: {
+      zIndex: "5"
+    }
+  });
+
 const mapStateToProps = state => ({
   todayWeather: state.todayWeather.weather,
   loadingTodayWeather: state.todayWeather.loading,
@@ -57,7 +66,11 @@ const mapStateToProps = state => ({
   displayLongTimeWeather: state.longTimeWeather.display
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(WeatherListing);
+export default compose(
+    connect(
+      mapStateToProps,
+      null,
+    ),
+    withStyles(styles)
+  )(WeatherListing);
+  

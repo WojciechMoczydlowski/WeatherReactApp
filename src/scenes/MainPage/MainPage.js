@@ -1,14 +1,14 @@
 import React from "react";
 
-import backgroundImg from "./img/sky.jpg";
-
 import SearchPanel from "./components/SearchPanel";
+import Background from "./components/Background";
 import WeatherListing from "./scenes/WeatherListing/WeatherListing";
 
 const MainPage = props => {
   return (
     <div>
       <SearchPanel />
+      <Background/>
       <WeatherListing />
     </div>
   );
