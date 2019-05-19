@@ -7,7 +7,7 @@ import {
 
 const longTimeWeather = {
   weather: {},
-  loading: false,
+  loading: true,
   error: {},
   display: false
 };

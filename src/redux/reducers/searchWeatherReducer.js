@@ -2,7 +2,9 @@ import {
     WEATHER_INPUT_CHANGE
   } from "../actions/types";
   
-  const cityName = '';
+  const cityName = {
+    cityName: 'Warsaw'
+  };
   
   const searchWeatherReducer = (state = cityName, action) => {
     switch (action.type) {

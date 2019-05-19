@@ -6,7 +6,7 @@ import {
 
 const todayWeather = {
   weather: {},
-  loading: false,
+  loading: true,
   error: {}
 };
 

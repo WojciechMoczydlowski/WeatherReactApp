@@ -6,14 +6,19 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Loading from "./Loading";
 
 const NextDayWeather = props => {
   const { classes, weather, gridSpecifier } = props;
+  const {loading} = props;
   const rootClasses = `${classes.root} ${gridSpecifier}`
-  console.log(rootClasses);
   return (
     <div className={rootClasses}>
       <Card className={classes.card}>
+      {loading ? (
+      <Loading />
+        ) : (
+          <React.Fragment>
         <CardContent>
           <Typography
             className={classes.title}
@@ -35,6 +40,7 @@ const NextDayWeather = props => {
         <CardActions>
           <Button size="small">Learn More</Button>
         </CardActions>
+        </React.Fragment>)}
       </Card>
     </div>
   );
