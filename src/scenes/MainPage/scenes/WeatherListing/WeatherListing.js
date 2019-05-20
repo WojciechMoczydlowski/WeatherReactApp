@@ -8,8 +8,7 @@ import { fetchLongTimeWeather } from "../../../../redux/actions/longTimeWeatherA
 
 import TodayWeather from "./components/TodayWeather";
 import NextDayWeather from "./components/NextDayWeather";
-import LongTermWeather from "./components/LongTermWeather";
-import Loading from "./components/Loading";
+import Error from "./components/Error";
 
 class WeatherListing extends Component {
   componentDidMount() {
@@ -18,26 +17,34 @@ class WeatherListing extends Component {
   }
   render() {
     const { classes } = this.props;
-    const { todayWeather = {}, loadingTodayWeather } = this.props;
+    const { todayWeather = {}, loadingTodayWeather,  errorTodayWeather = {}} = this.props;
     const {
-      longTimeWeather,
-      loadingLongTimeWeather,
-      errorLongTimeWeather,
+      longTimeWeather = {list:[]},
+      loadingLongTimeWeather = true,
+      errorLongTimeWeather ={},
     } = this.props;
-   
+    let oneDayLaterWeather = {};
+    let twoDaysLaterWeather =  {};
+  if(longTimeWeather.list !== undefined){
+    oneDayLaterWeather = longTimeWeather.list[8];
+    twoDaysLaterWeather = longTimeWeather.list[16];
+  };
+  const renderError =   (Object.entries(errorLongTimeWeather).length === 0 && errorLongTimeWeather.constructor === Object) &&
+  (Object.entries(errorTodayWeather).length === 0 && errorTodayWeather.constructor === Object) ? false : true; 
     return (
       <div className={classes.root}>
+        { renderError ? <Error/> :<div/>}
         <TodayWeather
           loading={loadingTodayWeather}
           todayWeather = {todayWeather}
         />
         <NextDayWeather
-          weather={longTimeWeather}
+          weather={oneDayLaterWeather}
           loading={loadingLongTimeWeather}
           gridSpecifier={classes.nextDayWeatherUp}
         />
         <NextDayWeather
-          weather={longTimeWeather}
+          weather={twoDaysLaterWeather}
           loading={loadingLongTimeWeather}
           gridSpecifier={classes.nextDayWeatherDown}
         />

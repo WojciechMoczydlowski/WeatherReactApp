@@ -27,8 +27,9 @@ const todayWeatherReducer = (state = todayWeather, action) => {
       };
     case TODAY_WEATHER_FAILURE:
       return {
+        ...state,
         loading: false,
-        ...state
+        error: action.payload,
       };
     default:
       return state;

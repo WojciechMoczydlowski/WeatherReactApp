@@ -28,8 +28,9 @@ const longTimeWeatherReducer = (state = longTimeWeather, action) => {
       };
     case LONGTIME_WEATHER_FAILURE:
       return {
+        ...state,
         loading: false,
-        ...state
+        error: action.payload,
       };
     case DISPLAY_LONGTIME_WEATHER:
       const changeDisplay = !state.display;

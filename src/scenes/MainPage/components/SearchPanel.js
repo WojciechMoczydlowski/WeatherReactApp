@@ -27,7 +27,7 @@ class SearchPanel extends Component {
   };
 
   render() {
-    const { classes, cityName } = this.props;
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <AppBar position="static">
